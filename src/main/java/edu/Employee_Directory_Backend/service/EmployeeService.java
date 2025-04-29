@@ -1,12 +1,12 @@
 package edu.Employee_Directory_Backend.service;
 
-import edu.Employee_Directory_Backend.entity.EmployeeEntity;
+import edu.Employee_Directory_Backend.dto.EmployeeDto;
 import java.util.List;
 
 public interface EmployeeService {
-    List<EmployeeEntity> getAllEmployees();
-    EmployeeEntity createEmployee(EmployeeEntity employee);
-    EmployeeEntity updateEmployee(Long id, EmployeeEntity employeeDetails);
+    List<EmployeeDto> getAllEmployees();
+    EmployeeDto createEmployee(EmployeeDto employee);
+    EmployeeDto updateEmployee(Long id, EmployeeDto employeeDetails);
     void deleteEmployee(Long id);
-    List<EmployeeEntity> searchEmployees(String query);
+    List<EmployeeDto> searchEmployees(String query);
 }
