@@ -4,6 +4,7 @@ import edu.Employee_Directory_Backend.dto.EmployeeDto;
 import edu.Employee_Directory_Backend.service.EmployeeService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -17,36 +18,25 @@ public class EmployeeController {
 
     @GetMapping("/get-all")
     public ResponseEntity<List<EmployeeDto>> getAllEmployees() {
-        return null;
+        List<EmployeeDto> employees = employeeService.getAllEmployees();
+        return ResponseEntity.ok(employees);
     }
 
     @PostMapping("/add")
     public ResponseEntity<EmployeeDto> createEmployee(@Valid @RequestBody EmployeeDto employee) {
-        return null;
+        EmployeeDto createdEmployee = employeeService.createEmployee(employee);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdEmployee);
     }
 
     @PutMapping("/update/{id}")
     public ResponseEntity<EmployeeDto> updateEmployee(@PathVariable Long id, @Valid @RequestBody EmployeeDto employeeDetails) {
-        return null;
+        EmployeeDto updatedEmployee = employeeService.updateEmployee(id, employeeDetails);
+        return ResponseEntity.ok(updatedEmployee);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteEmployee(@PathVariable Long id) {
-        return null;
-    }
-
-    @GetMapping("/search")
-    public ResponseEntity<List<EmployeeDto>> searchEmployees(@RequestParam String query) {
-        return null;
-    }
-
-    @GetMapping("/export")
-    public ResponseEntity<byte[]> exportEmployees() {
-        return null;
-    }
-
-    private String convertToCSV(List<EmployeeDto> employees) {
-
-        return null;
+        employeeService.deleteEmployee(id);
+        return ResponseEntity.noContent().build();
     }
 }
